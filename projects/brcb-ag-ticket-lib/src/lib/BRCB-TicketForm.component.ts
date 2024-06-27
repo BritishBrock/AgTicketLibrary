@@ -1,5 +1,5 @@
 import { Component, Input, input } from '@angular/core';
-import { BRCBAgTicketLibService } from './BRCB-TicketForm.service';
+import { BRCBTicketFormService } from './BRCB-TicketForm.service';
 
 @Component({
   selector: 'BRCB-TicketForm',
@@ -8,9 +8,9 @@ import { BRCBAgTicketLibService } from './BRCB-TicketForm.service';
   templateUrl: "./BRCB-TicketForm.component.html",
   styles: ``
 })
-export class BRCBAgTicketLibComponent {
+export class BRCBTicketForm {
   @Input() firebaseConfig:any;
-  constructor(private BRCBTicketFormService:BRCBAgTicketLibService ){
+  constructor(private BRCBTicketFormService:BRCBTicketFormService ){
     
   }
   ngOnInit(): void {

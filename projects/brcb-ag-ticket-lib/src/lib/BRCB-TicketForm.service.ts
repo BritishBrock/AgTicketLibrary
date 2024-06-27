@@ -6,15 +6,14 @@ import { Observable, from, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BRCBAgTicketLibService {
+export class BRCBTicketFormService {
 
   constructor() { }
   app:any;
   db:any;
     initialize(firebaseConfig:any){
-
       this.app = initializeApp(firebaseConfig);
-      this.db = getFirestore(this.app);
+      this.db = getFirestore(this.app)
     }
 
    insertTicket():Observable<any>{
