@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
-
+import { Component, Input, input } from '@angular/core';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore"; 
 @Component({
-  selector: 'lib-BRCB-AgTicketLib',
+  selector: 'BRCB-TicketForm',
   standalone: true,
   imports: [],
-  template: `
-    <p>
-      brcb-ag-ticket-lib works!
-    </p>
-  `,
+  templateUrl: "./brcb-ag-ticket-lib.component.html",
   styles: ``
 })
 export class BRCBAgTicketLibComponent {
+  @Input() firebaseConfig:any;
+  async ngOnInit(): Promise<void> {
+    const app = initializeApp(this.firebaseConfig);
+    const db = getFirestore(app);
 
+    try {
+      const docRef = await addDoc(collection(db, "users"), {
+        first: "Ada",
+        last: "Lovelace",
+        born: 1815
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 }
