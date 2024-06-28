@@ -3,5 +3,5 @@
  */
 
 
-export * from './lib/BRCB-TicketForm.component';
-export * from './lib/BRCB-TicketGrid.component';
+export * from './lib/TicketForm/BRCB-TicketForm.component';
+export * from './lib/TicketGrid/BRCB-TicketGrid.component';

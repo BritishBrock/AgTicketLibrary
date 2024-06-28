@@ -13,10 +13,35 @@ export class BRCBTicketForm {
   constructor(private BRCBTicketFormService:BRCBTicketFormService ){
     
   }
+
+
+ TicketConf = {
+    status:"string",
+    type:"number",
+    name:"string",
+    email:"string",
+    priority:"number",
+    issue:"string",
+    description:"string",
+  }
+  
+
+
   ngOnInit(): void {
     this.BRCBTicketFormService.initialize(this.firebaseConfig);
+
+    Object.entries(this.TicketConf).every(([key,value])=>{
+      console.log(key,value)
+      return true;
+    })
+
   }
   insertTicket(){
     this.BRCBTicketFormService.insertTicket();
   }
+
+
+
 }
+
+

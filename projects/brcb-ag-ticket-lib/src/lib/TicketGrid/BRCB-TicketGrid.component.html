@@ -7,7 +7,7 @@
         }
     </tr>
     @for (item of dataSet; track $index) {
-        <tr [ngStyle]=" $index%2 == 0 ? {'background-color': '#bbebff', 'min-width':gridHeaders.length*200+'px'} : {}">         
+        <tr [ngStyle]=" $index%2 == 0 ? {'background-color': '#bbebff', 'min-width':gridHeaders.length*200+'px'} : {'min-width':gridHeaders.length*200+'px'}">         
             @for (itemVal of item |keyvalue; track $index) {
                 <td>
                     {{itemVal.value}}
