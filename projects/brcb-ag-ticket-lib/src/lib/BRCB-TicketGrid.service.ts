@@ -19,31 +19,30 @@ export class BRCBTicketGridService {
     }
     listen(){
         const q = query(collection(this.db, "users"));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-          snapshot.docChanges().forEach((change) => {
-            if (change.type === "added") {
-                console.log("New city: ", change.doc.data());
-            }
-            if (change.type === "modified") {
-                console.log("Modified city: ", change.doc.data());
-            }
-            if (change.type === "removed") {
-                console.log("Removed city: ", change.doc.data());
-            }
-          });
-        });
+        return new Observable(observer => {
+             onSnapshot(q, snapshot => {
+                const changes = snapshot.docChanges().map(change => {
+                  const data = change.doc.data(); // Extract document data
+                  switch (change.type) {
+                    case 'added':
+                      return { type: 'added', data };
+                    case 'modified':
+                      return { type: 'modified', data };
+                    case 'removed':
+                      return { type: 'removed', data };
+                    default:
+                      return undefined; // Handle unexpected change types gracefully
+                  }
+                });
+
+                observer.next(changes);
+              }, error => {
+                observer.error(error);
+              });
+            })
       
     }
    
 
-
-
-}
-
-function ref(db: any, arg1: string) {
-    throw new Error('Function not implemented.');
-}
-function onValue(gameRef: void, arg1: (snapshot: any) => void) {
-    throw new Error('Function not implemented.');
 }
 
