@@ -17,8 +17,6 @@ export class BRCBTicketForm {
     this.BRCBTicketFormService.initialize(this.firebaseConfig);
   }
   insertTicket(){
-    this.BRCBTicketFormService.insertTicket().subscribe(data=>{
-      console.log(data);
-    })
+    this.BRCBTicketFormService.insertTicket();
   }
 }

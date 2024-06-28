@@ -16,14 +16,12 @@ export class BRCBTicketFormService {
       this.db = getFirestore(this.app)
     }
 
-   insertTicket():Observable<any>{
-    return from(
+   insertTicket(){
       addDoc(collection(this.db, "users"), {
         first: "Ada",
         last: "Lovelace",
         born: 1815
       })
-    )
   }
 
 }

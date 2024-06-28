@@ -1,0 +1,16 @@
+<table>
+    <tr>
+        <th>
+        </th>
+    </tr>
+    @for (item of dataSet; track $index) {
+        <tr>         
+            @for (itemVal of item |keyvalue; track $index) {
+                <td>
+                    {{itemVal.value}}
+                </td>
+            }
+        </tr>
+    }
+    
+</table>

@@ -4,6 +4,9 @@
     "paths": {
       "BRCB-AgTicketLib": [
         "./dist/brcb-ag-ticket-lib"
+      ],
+      "test": [
+        "./dist/test"
       ]
     },
     "outDir": "./dist/out-tsc",
