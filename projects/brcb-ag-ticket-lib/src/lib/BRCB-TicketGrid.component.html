@@ -1,10 +1,13 @@
 <table>
     <tr>
-        <th>
-        </th>
+        @for (item of gridHeaders; track $index) {
+            <th>
+                {{item}}
+            </th>
+        }
     </tr>
     @for (item of dataSet; track $index) {
-        <tr>         
+        <tr [ngStyle]=" $index%2 == 0 ? {'background-color': 'blue'} : {}">         
             @for (itemVal of item |keyvalue; track $index) {
                 <td>
                     {{itemVal.value}}

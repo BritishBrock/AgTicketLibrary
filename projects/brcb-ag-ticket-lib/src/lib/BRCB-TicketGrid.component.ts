@@ -1,14 +1,16 @@
 import { Component, Input, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BRCBTicketGridService } from './BRCB-TicketGrid.service';
 import { KeyValuePipe } from '@angular/common';
 @Component({
   selector: 'BRCB-TicketGrid',
   standalone: true,
-  imports: [KeyValuePipe],
+  imports: [KeyValuePipe,CommonModule],
   templateUrl: "./BRCB-TicketGrid.component.html",
-  styles: ``
+  styleUrl: "./BRCB-TicketGrid.component.css",
 })
 export class BRCBTicketGrid {
+[x: string]: any;
     @Input() firebaseConfig:any;
   constructor(private BRCBTicketGridService:BRCBTicketGridService ){
     
@@ -27,9 +29,7 @@ export class BRCBTicketGrid {
   }
 
 
-  gridTemplate:any = {
-    test:"f",
-  }
+  gridHeaders:any = ["Date Of Birth", "First Name" , "Last Name"]
   
 
 
