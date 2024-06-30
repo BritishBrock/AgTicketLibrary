@@ -16,12 +16,8 @@ export class BRCBTicketFormService {
       this.db = getFirestore(this.app)
     }
 
-   insertTicket(){
-      addDoc(collection(this.db, "users"), {
-        first: "Ada",
-        last: "Lovelace",
-        born: 1815
-      })
+   insertTicket(ticket:any){
+      addDoc(collection(this.db, "users"), ticket)
   }
 
 }

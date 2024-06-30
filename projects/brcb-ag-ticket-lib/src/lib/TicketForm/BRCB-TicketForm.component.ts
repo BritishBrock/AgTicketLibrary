@@ -40,7 +40,7 @@ ticket:any = {
 
   }
   insertTicket(){
-    this.BRCBTicketFormService.insertTicket();
+    this.BRCBTicketFormService.insertTicket(this.ticket);
   }
 
 
