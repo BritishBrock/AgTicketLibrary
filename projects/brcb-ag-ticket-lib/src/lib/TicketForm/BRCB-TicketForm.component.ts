@@ -1,10 +1,11 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input, NgModule, input } from '@angular/core';
 import { BRCBTicketFormService } from './BRCB-TicketForm.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'BRCB-TicketForm',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: "./BRCB-TicketForm.component.html",
   styles: ``
 })
@@ -14,7 +15,9 @@ export class BRCBTicketForm {
     
   }
 
+ticket:any = {
 
+}
  TicketConf = {
     status:"string",
     type:"number",
