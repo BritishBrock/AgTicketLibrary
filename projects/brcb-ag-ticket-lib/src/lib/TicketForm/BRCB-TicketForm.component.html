@@ -1,4 +1,8 @@
-<input [(ngModel)]="ticket.status" type="text" name="" id="">
+<select name="" id="" [(ngModel)]="ticket.status">
+    <option value="In Progress">In Progress</option>
+    <option value="Done">Done</option>
+    <option value="To do">To do</option>
+</select>
 <input [(ngModel)]="ticket.type" type="text" name="" id="">
 <input [(ngModel)]="ticket.name" type="text" name="" id="">
 <input [(ngModel)]="ticket.email" type="text" name="" id="">

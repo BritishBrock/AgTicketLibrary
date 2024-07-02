@@ -18,25 +18,13 @@ export class BRCBTicketForm {
 ticket:any = {
 
 }
- TicketConf = {
-    status:"string",
-    type:"number",
-    name:"string",
-    email:"string",
-    priority:"number",
-    issue:"string",
-    description:"string",
-  }
-  
+
 
 
   ngOnInit(): void {
     this.BRCBTicketFormService.initialize(this.firebaseConfig);
 
-    Object.entries(this.TicketConf).every(([key,value])=>{
-      console.log(key,value)
-      return true;
-    })
+    
 
   }
   insertTicket(){
@@ -48,3 +36,12 @@ ticket:any = {
 }
 
 
+export const  TicketConf = {
+  status:"string",
+  type:"number",
+  name:"string",
+  email:"string",
+  priority:"number",
+  issue:"string",
+  description:"string",
+}

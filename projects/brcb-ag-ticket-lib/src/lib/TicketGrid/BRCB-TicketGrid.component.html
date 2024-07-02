@@ -1,18 +1,39 @@
 <table>
     <tr>
-        @for (item of gridHeaders; track $index) {
+        @for (item of ticketConf | keyvalue; track $index) {
             <th>
-                {{item}}
+                {{item.key}}
             </th>
         }
     </tr>
     @for (item of dataSet; track $index) {
-        <tr [ngStyle]=" $index%2 == 0 ? {'background-color': '#bbebff', 'min-width':gridHeaders.length*200+'px'} : {'min-width':gridHeaders.length*200+'px'}">         
-            @for (itemVal of item |keyvalue; track $index) {
-                <td>
-                    {{itemVal.value}}
-                </td>
+        <tr (click)="opened = $index" [ngStyle]=" $index%2 == 0 ? {'background-color': '#bbebff', 'min-width':gridHeaders.length*200+'px'} : {'min-width':gridHeaders.length*200+'px'}">         
+            @if(opened != $index){
+            @for (itemVal of ticketConf |keyvalue; track $index) {
+                <td >
+                        {{ item[itemVal.key]}}
+                    </td>
+                }
+            }@else {
+                <div class="content">
+                    <div class="left">
+                        <input type="text" name="" id="" [(ngModel)]="item.issue">
+                        <textarea name="" id="" [(ngModel)]="item.description"></textarea>
+                    </div>
+                    <div class="right">
+                        <select name="" id="" [(ngModel)]="item.status">
+                            <option value="In Progress">In Progress</option>
+                            <option value="Done">Done</option>
+                            <option value="To do">To do</option>
+                        </select>
+                        <input type="text" name="" id="" [(ngModel)]="item.type">
+                        <input type="text" name="" id="" [(ngModel)]="item.email">
+                        <input type="text" name="" id="" [(ngModel)]="item.name">
+                        <input type="text" name="" id="" [(ngModel)]="item.priority">
+                    </div>
+                </div>
+
             }
-        </tr>
+    </tr>
     }
 </table>

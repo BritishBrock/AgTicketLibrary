@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build-library": "ng build BRCB-AgTicketLib",
-    "pack-lib": "cd dist/brcb-ag-ticket-lib && npm pack"
+    "library": "ng build BRCB-AgTicketLib && cd dist/brcb-ag-ticket-lib && npm pack"
   },
   "private": true,
   "dependencies": {

@@ -19,6 +19,17 @@ table{
             display: flex;
             justify-content: center;
             align-items: center;
+            .content{
+                display: flex;
+                width: 100%;
+                .left{
+                    flex: 1;
+                }
+                .right{
+                    flex: 1;
+                }
+            }
         }
     }
 }
+
