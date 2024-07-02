@@ -17,7 +17,7 @@ export class BRCBTicketFormService {
     }
 
    insertTicket(ticket:any){
-      addDoc(collection(this.db, "users"), ticket)
+      addDoc(collection(this.db, "tickets"), ticket)
   }
 
 }

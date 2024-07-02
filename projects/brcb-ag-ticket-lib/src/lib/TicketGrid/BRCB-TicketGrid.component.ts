@@ -4,6 +4,8 @@ import { BRCBTicketGridService } from './BRCB-TicketGrid.service';
 import { KeyValuePipe } from '@angular/common';
 import { TicketConf } from '../TicketForm/BRCB-TicketForm.component';
 import { FormsModule } from '@angular/forms';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'BRCB-TicketGrid',
@@ -22,11 +24,20 @@ export class BRCBTicketGrid {
 
   dataSet:any = [];
   opened:number = -1;
+  sub:any
   ngOnInit(): void {
-    this.BRCBTicketGridService.initialize(this.firebaseConfig);
-     this.BRCBTicketGridService.listen().subscribe((data:any)=>{
+     this.BRCBTicketGridService.initialize(this.firebaseConfig);
+     let sub =this.BRCBTicketGridService.listen().subscribe((data:any)=>{
       for(let i = 0; i < data.length;i++){
         if(data[i].type == "added")this.dataSet.push(data[i].data);
+        else if(data[i].type == "modified"){
+            for(let j = 0; j < this.dataSet.length;j++){
+              if(this.dataSet[j].id == data[i].data.id ){
+                this.dataSet[j] = data[i].data;
+                break;
+              }
+            }
+        }
       }
     })
   }
@@ -34,7 +45,13 @@ export class BRCBTicketGrid {
 
   gridHeaders:any = ["Date Of Birth", "First Name" , "Last Name"]
   
-
+  save(index:number){
+    this.BRCBTicketGridService.modify(this.dataSet[index])
+  }
+  ngOnDestroy(): void {
+    this.BRCBTicketGridService.unsubscribe();
+    this.sub.unsubscribe();
+  }
 
 }
 
