@@ -16,35 +16,20 @@ export class BRCBTicketGridService {
         this.app = initializeApp(firebaseConfig);
         this.db = getFirestore(this.app)
     }
-    snapshot:any;
     listen(){
         const q = query(collection(this.db, "tickets"));
         return new Observable(observer => {
 
-
-          
-             this.snapshot = onSnapshot(q, snapshot => {
-                const changes = snapshot.docChanges().map(change => {
-                  var data = change.doc.data(); // Extract document data
-                  data["id"] = change.doc.id;
-                  switch (change.type) {
-                    case 'added':
-                      return { type: 'added', data };
-                    case 'modified':
-                      console.log(data)
-                      return { type: 'modified', data };
-                    case 'removed':
-                      return { type: 'removed', data };
-                    default:
-                      return undefined; // Handle unexpected change types gracefully
-                  }
-                });
-
-                observer.next(changes);
-              }, error => {
-                observer.error(error);
-              });
-            })
+          let changes:any = [];
+            getDocs(collection(this.db, "tickets")).then(query =>{
+            query.forEach((doc) => {
+              let data = doc.data()
+              data["id"] = doc.id;
+              changes.push(data);
+            });
+            console.log(changes)
+          });
+        })
       
     }
     modify(ticket:any){
@@ -54,7 +39,7 @@ export class BRCBTicketGridService {
       updateDoc(docRef,newData)
     }
     unsubscribe(){
-      this.snapshot();
+  
     }
    
 
