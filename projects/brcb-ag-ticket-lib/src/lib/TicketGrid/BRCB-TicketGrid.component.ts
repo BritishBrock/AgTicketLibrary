@@ -29,15 +29,8 @@ export class BRCBTicketGrid {
      this.BRCBTicketGridService.initialize(this.firebaseConfig);
      let sub =this.BRCBTicketGridService.listen().subscribe((data:any)=>{
       for(let i = 0; i < data.length;i++){
-        if(data[i].type == "added")this.dataSet.push(data[i].data);
-        else if(data[i].type == "modified"){
-            for(let j = 0; j < this.dataSet.length;j++){
-              if(this.dataSet[j].id == data[i].data.id ){
-                this.dataSet[j] = data[i].data;
-                break;
-              }
-            }
-        }
+        console.log(data)
+      //  this.dataSet.push(data[i].data);
       }
     })
   }
