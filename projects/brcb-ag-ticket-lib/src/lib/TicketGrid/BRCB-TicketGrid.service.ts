@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { doc, getDocs, getFirestore, onSnapshot, query , collection, addDoc, updateDoc } from "firebase/firestore";
 import { Observable, from, of } from 'rxjs';
 import firebase from 'firebase/app';
+import { getDatabase } from "firebase/database";
 import 'firebase/firestore';
 @Injectable({
     providedIn: 'root'
@@ -12,9 +13,11 @@ export class BRCBTicketGridService {
     constructor() { }
     app: any;
     db: any;
+    rdb:any;
     initialize(firebaseConfig: any) {
         this.app = initializeApp(firebaseConfig);
         this.db = getFirestore(this.app)
+        this.rdb = getDatabase(this.app);
     }
     listen(){
         const q = query(collection(this.db, "tickets"));
